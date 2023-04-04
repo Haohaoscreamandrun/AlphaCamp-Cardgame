@@ -1,0 +1,45 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  /* 容器間排列 */
+  flex: 7% 0 1; 
+  /* flex-basis基本分配大小, flex-grow是否分配剩餘空間之權重, flex-shrink分配壓縮空間之權重; */
+  margin: 2px;
+  box-sizing: border-box;
+  /* 將border列入width計算 */
+  height: 8vw;
+  /* 每張卡片高度為8%的可視區大小 */
+  border: 2px solid #333333;
+  
+  /* 容器內排列 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.card > .suits {
+  max-width: 30%;
+  max-height: 30%;
+  align-self: center;
+}
+
+.card > .number {
+  margin: 5%;
+  font-size: 2vw;
+}
+
+.card .number:last-child {
+  transform: rotate(180deg);
+}
+
+.heart,.diamond{
+  color: red;
+}
+
+.back {
+  background: url('https://assets-lighthouse.alphacamp.co/uploads/image/file/9222/ExportedContentImage_00.png');
+  background-size: cover;
+}
