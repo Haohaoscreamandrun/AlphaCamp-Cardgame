@@ -1,11 +1,13 @@
 .cards {
   display: flex;
   flex-wrap: wrap;
+  width: 85%;
+  margin: 0 auto;
 }
 
 .card {
   /* 容器間排列 */
-  flex: 7% 0 1; 
+  flex: 7% 1 1;
   /* flex-basis基本分配大小, flex-grow是否分配剩餘空間之權重, flex-shrink分配壓縮空間之權重; */
   margin: 2px;
   box-sizing: border-box;
@@ -13,20 +15,24 @@
   height: 8vw;
   /* 每張卡片高度為8%的可視區大小 */
   border: 2px solid #333333;
-  
+  background-color: white;
+
   /* 容器內排列 */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  /* transform */
+  transition: all ease 0.3s ;
 }
 
-.card > .suits {
+.card>.suits {
   max-width: 30%;
   max-height: 30%;
   align-self: center;
 }
 
-.card > .number {
+.card>.number {
   margin: 5%;
   font-size: 2vw;
 }
@@ -35,11 +41,129 @@
   transform: rotate(180deg);
 }
 
-.heart,.diamond{
+.heart,
+.diamond {
   color: red;
 }
 
 .back {
   background: url('https://assets-lighthouse.alphacamp.co/uploads/image/file/9222/ExportedContentImage_00.png');
   background-size: cover;
+  transform: scaleX(-1);
+}
+
+.paired {
+  /* background-color: #dae0e3; */
+  animation: pairedAnimation 0.7s ease-out forwards;
+}
+
+#header {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 85%;
+}
+
+#header .title {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#header .title img {
+  max-width: 3em;
+}
+
+#header .title h2 {
+  padding-left: 0.5em;
+}
+
+#header .score {
+  margin: 0;
+  color: #6c90ac;
+}
+
+#header .tried {
+  margin-top: 0;
+}
+
+.wrong {
+  animation: wrongAnimation 0.2s 5;
+}
+
+@keyframes wrongAnimation {
+  /* 關鍵影格 */
+  0% {
+
+  }
+
+  100% {
+    border: 2px solid #f17232;
+  }
+}
+
+@keyframes pairedAnimation {
+  0% {}
+  15% {
+    scale: 1.1;
+    z-index: 1;
+  }
+  30% {
+    scale: 1.2;
+    z-index: 1;
+  }
+  50% {
+    scale: 1.3;
+    z-index: 1;
+    transform: translateX(0)
+  }
+  65% {
+    scale: 0.9;
+    z-index: 1;
+    border: 3px solid #17b852;
+    transform: translateX(5px);
+  }
+  75% {
+    scale: 0.95;
+    z-index: 1;
+    border: 2px solid #17b852;
+    transform: translateX(-5px)
+  }
+  85% {
+    scale: 0.97;
+    z-index: 1;
+    border: 1px solid #17b852;
+    transform: translateX(5px)
+  }
+
+  100%{
+    scale: 1;
+    z-index: 1;
+    background-color: #dae0e3;
+    transform: translateX(0)
+  }
+}
+
+/** Game finished **/
+.completed {
+  position: absolute;
+  z-index: 999;
+  top: 33vh;
+  background-color: RGBA(232, 246, 254, 0.8);
+  width: 100vw;
+  padding: 50px 0;
+}
+
+.completed>p {
+  font-size: 1.5em;
+  color: black;
+  text-align: center;
+  margin: 0;
+}
+
+.completed>p:first-child {
+  font-size: 3em;
+  font-weight: 700;
+  color: #758d9a;
 }
